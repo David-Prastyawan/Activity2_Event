@@ -14,10 +14,10 @@
         android:layout_gravity="center"
         android:layout_marginTop="150dp"
         app:srcCompat="@drawable/login"
-        />
+        android:contentDescription="@string/todo" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/edEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -27,23 +27,23 @@
         android:importantForAutofill="no"
         android:inputType="textWebEmailAddress"
         android:padding="12dp"
-        />
+        android:textColorHint="#757575" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/edPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="#ffffff"
         android:ems="10"
         android:hint="@string/tPassword"
+        android:importantForAutofill="no"
         android:inputType="textPassword"
         android:padding="12dp"
-        android:importantForAutofill="no"
-        />
+        android:textColorHint="#757575" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btSignin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -52,6 +52,5 @@
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
         android:text="@string/bsignin"
-        android:textColor="#ffffff"
-        />
+        android:textColor="#ffffff" />
 </LinearLayout>
