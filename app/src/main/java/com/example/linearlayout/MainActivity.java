@@ -2,6 +2,7 @@ package com.example.linearlayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -33,26 +34,37 @@ public class MainActivity extends AppCompatActivity {
                 nama = edemail.getText().toString();
                 password = edpassword.getText().toString();
 
-                if (nama.trim().equals("david@mail.com") && password.trim().equals("666"))
+                //set data yang benar
+                String email = "david@mail.com";
+                String pass = "6666";
+
+                if (nama.isEmpty() || password.isEmpty())
                 {
-                    Toast t = Toast.makeText(getApplicationContext(), "Login Sukses", Toast.LENGTH_LONG);
-                    t.show();
-                }
-                else if (nama.trim().equals("david@mail.com") || password.trim().equals("666"))
-                {
-                    Toast t = Toast.makeText(getApplicationContext(), "Password Salah", Toast.LENGTH_LONG);
-                    t.show();
-                }
-                else if (nama.trim().equals("david@mail.com") || password.trim().equals("666"))
-                {
-                    Toast t = Toast.makeText(getApplicationContext(), "Email Salah", Toast.LENGTH_LONG);
+                    Toast t = Toast.makeText(getApplicationContext(), "Email dan Password wajib diisi", Toast.LENGTH_LONG);
                     t.show();
                 }
                 else
                 {
-                    Toast t = Toast.makeText(getApplicationContext(), "email dan Password Salah", Toast.LENGTH_LONG);
-                    t.show();
+                    if (nama.equals(email) && password.equals(pass))
+                    {
+                        Toast t = Toast.makeText(getApplicationContext(), "Login Sukses", Toast.LENGTH_LONG);
+                        t.show();
+
+                        Bundle b = new Bundle();
+                        b.putString("a", nama.trim());
+                        b.putString("b", password.trim());
+                        Intent i = new Intent(getApplicationContext(), ActivityHasil.class);
+                        i.putExtras(b);
+                        startActivity(i);
+                    }
+
+                    else
+                    {
+                        Toast t = Toast.makeText(getApplicationContext(), "Login Gagal", Toast.LENGTH_LONG);
+                        t.show();
+                    }
                 }
+
 
             }
         });
