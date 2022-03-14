@@ -33,16 +33,21 @@ public class DaftarActivity extends AppCompatActivity {
                     edtPassword.getText().toString().isEmpty() ||
                     edtrepass.getText().toString().isEmpty())
                 {
-                    //menampilkan pesan untuk cek isi pass dan repass sama atau tidak
-                    Toast.makeText(getApplicationContext(), "Pendaftaran Berhasil...", Toast.LENGTH_LONG).show();
-                    //method untuk kembali ke Main Activity
-                    Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(i);
+                    Snackbar.make(view, "Wajib isi seluruh data!", Snackbar.LENGTH_LONG).show();
                 }
                 else
                 {
-                    //tampilan pesan dari pass dan repass tidak sama
-                    Snackbar.make(view, "Password dan Repassword harus sama!", Snackbar.LENGTH_LONG).show();
+                    if (edtPassword.getText().toString().equals(edtrepass.getText().toString()))
+                    {
+                        Toast.makeText(getApplicationContext(), "Pendaftaran Berhasil...",Toast.LENGTH_LONG).show();
+                        //kembali ke main activity
+                        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(i);
+                    }
+                    else
+                    {
+                        Snackbar.make(view, "Password dan Repassword harus sama!", Snackbar.LENGTH_LONG).show();
+                    }
                 }
 
             }

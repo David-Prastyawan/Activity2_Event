@@ -13,8 +13,8 @@
         android:layout_height="100dp"
         android:layout_gravity="center"
         android:layout_marginTop="150dp"
-        app:srcCompat="@drawable/login"
-        android:contentDescription="@string/todo" />
+        android:contentDescription="@string/todo"
+        app:srcCompat="@drawable/login" />
 
     <EditText
         android:id="@+id/edEmail"
