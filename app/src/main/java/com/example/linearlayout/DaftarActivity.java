@@ -23,34 +23,39 @@ public class DaftarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daftar);
 
-        fab.setOnClickListener(new View.OnClickListener() {
+        edtNama =findViewById(R.id.edNama);
+        edtAlamat =findViewById(R.id.edAlamat);
+        edtEmail =findViewById(R.id.edEmail);
+        edtPassword =findViewById(R.id.edPassword);
+        edtrepass =findViewById(R.id.edrepass);
+
+        fab =findViewById(R.id.fabSimpan);
+
+        fab.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                //kondisi untuk cek apakah edittext kosong atau tidak
                 if (edtNama.getText().toString().isEmpty() ||
-                    edtAlamat.getText().toString().isEmpty() ||
-                    edtEmail.getText().toString().isEmpty() ||
-                    edtPassword.getText().toString().isEmpty() ||
-                    edtrepass.getText().toString().isEmpty())
+                        edtAlamat.getText().toString().isEmpty() ||
+                        edtEmail.getText().toString().isEmpty() ||
+                        edtPassword.getText().toString().isEmpty() ||
+                        edtrepass.getText().toString().isEmpty())
                 {
-                    Snackbar.make(view, "Wajib isi seluruh data!", Snackbar.LENGTH_LONG).show();
-                }
-                else
-                {
-                    if (edtPassword.getText().toString().equals(edtrepass.getText().toString()))
+                    Snackbar.make(view, "Wajib isi seluruh data!!!", Snackbar.LENGTH_LONG).show();
+                }else{
+                    if(edtPassword.getText().toString().equals(edtrepass.getText().toString()))
                     {
-                        Toast.makeText(getApplicationContext(), "Pendaftaran Berhasil...",Toast.LENGTH_LONG).show();
-                        //kembali ke main activity
+                        Toast.makeText(getApplicationContext(), "Pendaftaran berhasil",
+                                Toast.LENGTH_LONG).show();
+
                         Intent i = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(i);
-                    }
-                    else
-                    {
-                        Snackbar.make(view, "Password dan Repassword harus sama!", Snackbar.LENGTH_LONG).show();
+                    }else{
+                        Snackbar.make(view,"Password dan REpassword harus sama!",
+                                Snackbar.LENGTH_LONG).show();
                     }
                 }
-
             }
+
         });
     }
 }

@@ -1,5 +1,6 @@
 package com.example.linearlayout;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -15,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     //deklarasi variabel
     Button btnLogin;
-    EditText edemail, edpassword;
+    private EditText edemail, edpassword;
     String nama, password;
 
     @Override
@@ -26,9 +27,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         //kondisi jika yang dipilih adalah id mnDaftar
-        if (item.getItemId() == R.id.mnDaftar)
+        if (item.getItemId() == R.id.mnDftr)
         {
             //memanggil activity DaftarActivity
             Intent i = new Intent(getApplicationContext(), DaftarActivity.class);
@@ -43,9 +44,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //menghubungkan variabel
-        btnLogin=findViewById(R.id.btSignin);
-        edemail=findViewById(R.id.edEmail);
-        edpassword=findViewById(R.id.edPassword);
+        Button btnLogin = findViewById(R.id.btSignin);
+        edemail = findViewById(R.id.edEmail);
+        edpassword = findViewById(R.id.edPassword);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,34 +57,49 @@ public class MainActivity extends AppCompatActivity {
                 password = edpassword.getText().toString();
 
                 //set data yang benar
-                String email = "david@mail.com";
-                String pass = "6666";
+                String email = "david";
+                String pass = "666";
 
-                if (nama.isEmpty() || password.isEmpty())
-                {
-                    Toast t = Toast.makeText(getApplicationContext(), "Email dan Password wajib diisi", Toast.LENGTH_LONG);
+                if (nama.isEmpty() || password.isEmpty()) {
+                    Toast t = Toast.makeText(getApplicationContext(),
+                            "Email & Password wajib Diisi!",
+                            Toast.LENGTH_LONG);
+                    edemail.setError("Email Harus Diisi!!!");
+                    edpassword.setError("Password Harus Diisi!!!");
                     t.show();
                 }
-                else
-                {
-                    if (nama.equals(email) && password.equals(pass))
-                    {
-                        Toast t = Toast.makeText(getApplicationContext(), "Login Sukses", Toast.LENGTH_LONG);
-                        t.show();
+                if (nama.equals("david") && password.equals("666")) {
 
-                        Bundle b = new Bundle();
-                        b.putString("a", nama.trim());
-                        b.putString("b", password.trim());
-                        Intent i = new Intent(getApplicationContext(), ActivityHasil.class);
-                        i.putExtras(b);
-                        startActivity(i);
-                    }
+                    Toast t = Toast.makeText(getApplicationContext(),
+                            "Login Sukses", Toast.LENGTH_LONG);
+                    t.show();
+                    Bundle b = new Bundle();
+                    b.putString("a", nama.trim());
+                    b.putString("b", password.trim());
 
-                    else
-                    {
-                        Toast t = Toast.makeText(getApplicationContext(), "Login Gagal", Toast.LENGTH_LONG);
-                        t.show();
-                    }
+                    Intent i = new Intent(getApplicationContext(), ActivityHasil.class);
+                    i.putExtras(b);
+
+                    startActivity(i);
+
+                }
+                else if (!nama.equals("david") && password.equals("666")) {
+
+                    Toast t = Toast.makeText(getApplicationContext(),
+                            "Email salah", Toast.LENGTH_LONG);
+                    t.show();
+                }
+                else if (nama.equals("david") && !password.equals("666")) {
+
+                    Toast t = Toast.makeText(getApplicationContext(),
+                            "Password salah", Toast.LENGTH_LONG);
+                    t.show();
+                }
+                else {
+
+                    Toast t = Toast.makeText(getApplicationContext(),
+                            "Email dan Password salah", Toast.LENGTH_LONG);
+                    t.show();
                 }
             }
         });
